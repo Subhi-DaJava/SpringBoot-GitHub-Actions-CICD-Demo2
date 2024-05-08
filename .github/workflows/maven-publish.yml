@@ -48,7 +48,7 @@ jobs:
         password: ${{ secrets.DOKCER_HUB_ACCESS_TOKEN_DEMO2 }}
 
     - name: Push the image to Docker Hub
-      run: docker/build-push-action@v3
+      uses: docker/build-push-action@v3
       with:
         context: .
         dockerfile: ./Dockerfile
