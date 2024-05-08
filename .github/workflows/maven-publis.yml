@@ -1,0 +1,35 @@
+name: Build and Deploy Spring Boot Application with GitHub Actions
+
+# when the workflow should be triggered
+on:
+    push:
+        branches:
+        - main
+        - develop
+        - feature/*
+# jobs that will be executed
+jobs:
+  build-deploy:
+    name: Build and Deploy Spring Boot Application with GitHub Actions
+    # runs-on specifies the runner that the job will run on,here we are using ubuntu-latest from GitHub Actions
+    runs-on: ubuntu-latest
+    # steps that will be executed in the job
+    steps:
+    - name: Checkout the code
+      # uses is a shorthand for the action repository name
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      # with is used to pass input to the action
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+    - name: Run the unit tests
+      run: mvn -B test --file pom.xml
+    - name: Build the application
+      # run multiple commands in a single step
+      run: | 
+        mvn clean 
+        mvn install
+        mvn -B package --file pom.xml
