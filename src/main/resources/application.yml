@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: SpringBoot-GitHub-Actions-CICD-Demo2
+  datasource:
+    url: jdbc:mysql://localhost:3306/student_db_github_actions_080524?serverTimezone=UTC&&createDatabaseIfNotExist=true
+    username: root
+    password: rootroot
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
